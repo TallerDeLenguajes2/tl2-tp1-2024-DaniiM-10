@@ -1,13 +1,11 @@
-# Taller de lenguajes II - TP1 - Ibáñez Lucas Daniel (Danii :P)
+# TL II - TP1 - Ibáñez Lucas Daniel (Danii :P)
 
-### Preguntas:
-
-#### 1. ¿Cuál de estas relaciones considera que se realiza por composición y cuál por agregación?
+## 1. ¿Cuál de estas relaciones considera que se realiza por composición y cuál por agregación?
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La relación entre las clases **Pedido** y **Cliente** es un ejemplo de composicion, ya que si se elimina un pedido, el cliente tambien se debe eliminar.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La relación entre **Cadete** y **Pedido** es un tipo de asociación por agregación, porque al no tener pedidos no quiere decir que no pueda tener cadetes.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por ultimo, la relación entre **Cadeteria** y **Cadete** es por composicion, lo que implica que los cadetes dependen de la cadeteria.
 
-#### 2. ¿Qué métodos considera que debería tener la clase Cadetería y la clase Cadete?
+## 2. ¿Qué métodos considera que debería tener la clase Cadetería y la clase Cadete?
 - **Alguno de los metodos que podria agregar en Cadeteria:**  
     - `AltaCadete()`: Para ingresar un nuevo cadete en la cadeteria, podria incluir una creacion de un objeto Cadete de la lista de cadetes.  
     - `BajaCadete()`: Para eliminar un cadete de la lista.  
@@ -19,11 +17,11 @@
     - `CambiarEstadoPedido()`: Para cambiar el estado del pedido, de "Pendiente", "En camino" o "Entregado".  
     - `EliminarPedido()`: Para eliminar un pedido de la lista de pedidos que tenga el cadete.  
 
-#### 3. Teniendo en cuenta los principios de abstracción y ocultamiento, ¿qué atributos, propiedades y métodos deberían ser públicos y cuáles privados?
+## 3. Teniendo en cuenta los principios de abstracción y ocultamiento, ¿qué atributos, propiedades y métodos deberían ser públicos y cuáles privados?
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por lo general los atributos son privados, para que solo sean accesibles desde dentro de la clase o sus derivadas. Podriamos utilizar los getters y setters para mostrar o modificar algun valor de un atributo.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Los metodos publicos podrian ser aquellos que nos permiten interactuar con el objeto y ejecutar algunas funcionalidades importantes, y hacer privados a los metodos que solo sean relevantes para la implementación interna, o que realicen alguna tarea auxiliar.  
 
-#### 4. ¿Cómo diseñaría los constructores de cada una de las clases?
+## 4. ¿Cómo diseñaría los constructores de cada una de las clases?
 - **Constructor de Cadeteria:**
 ```csharp
 public Cadeteria(string _Nombre, string _Telefono)
@@ -64,4 +62,4 @@ public Cliente(string _Nombre, string _Direccion, string _Telefono, string _Dato
     DatosReferenciaDireccion = _DatosReferenciaDireccion;
 }
 ```  
-#### 5. ¿Se le ocurre otra forma que podría haberse realizado el diseño de clases?
+## 5. ¿Se le ocurre otra forma que podría haberse realizado el diseño de clases?
