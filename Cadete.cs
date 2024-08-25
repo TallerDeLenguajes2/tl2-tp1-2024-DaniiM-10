@@ -26,4 +26,20 @@ public class Cadete
     {
         return 500 * PedidosEntregados();
     }
+    public void ListarPedidos()
+    {
+        Console.WriteLine("*************** Listado de pedidos ***************");
+        foreach (var pedido in Pedidos) pedido.MostrarPedido();
+        Console.WriteLine("**************************************************");
+    }
+    public void EliminarHistorialPedidos()
+    {
+        if (Pedidos != null)
+        {
+            Pedidos.Clear();
+            Console.WriteLine("El historial de pedidos fue vaciado.");
+        } else {
+            Console.WriteLine("No hay pedidos.");
+        }
+    }
 }

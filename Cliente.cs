@@ -13,4 +13,12 @@ public class Cliente
         Telefono = _Telefono;
         DatosReferenciaDireccion = _DatosReferenciaDireccion;
     }
+    public void MostrarDatosCliente()
+    {
+        Console.WriteLine("\t\t- CLIENTE:");
+        Console.WriteLine($"\t\tNombre: {Nombre}");
+        Console.WriteLine($"\t\tDireccion: {Direccion}");
+        Console.WriteLine($"\t\tTelefono: {Telefono}");
+        if(!string.IsNullOrEmpty(DatosReferenciaDireccion)) Console.WriteLine($"\t\tReferencias: {DatosReferenciaDireccion}");
+    }
 }

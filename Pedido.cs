@@ -4,7 +4,8 @@ namespace Modelos;
 public enum Estados {
     Pendiente,
     EnCamino,
-    Entregado
+    Entregado,
+    Cancelado
 }
 public class Pedido
 {
@@ -19,5 +20,34 @@ public class Pedido
         Obs = _Obs;
         cliente = new Cliente(_Nombre, _Direccion, _Telefono, _DatosReferenciaDireccion);
         EstadoDelPedido = Estados.Pendiente;
+    }
+    private void MostrarEstado()
+    {
+        switch (EstadoDelPedido)
+        {
+            case Estados.Pendiente:
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                break;
+            case Estados.EnCamino:
+                Console.ForegroundColor = ConsoleColor.Blue;
+                break;
+            case Estados.Entregado:
+                Console.ForegroundColor = ConsoleColor.Green;
+                break;
+            case Estados.Cancelado:
+                Console.ForegroundColor = ConsoleColor.Red;
+                break;
+        }
+        Console.WriteLine($"Estado del pedido: {EstadoDelPedido}");
+        Console.ResetColor();
+    }
+    public void MostrarPedido()
+    {
+        Console.WriteLine("\t********** Datos del Pedido **********");
+        Console.WriteLine($"\t\tNro de pedido: {Nro}");
+        Console.WriteLine($"\t\tObservaciones: {Obs}");
+        MostrarEstado();
+        cliente.MostrarDatosCliente();
+        Console.WriteLine("\t**************************************");
     }
 }
