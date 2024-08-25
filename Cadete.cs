@@ -4,15 +4,16 @@ namespace Modelos;
 
 public class Cadete
 {
-    public long Id { get; }
+    public long Id { get; set; }
     public string Nombre { get; set; }
     public string Direccion { get; set; }
     public string Telefono { get; set; }
     public List<Pedido> Pedidos { get; set; }
 
-    public Cadete(string _Nombre, string _Direccion, string _Telefono)
+    public Cadete(long _Id, string _Nombre, string _Direccion, string _Telefono)
     {
-        Id = DateTime.Now.Ticks;
+        //Id = DateTime.Now.Ticks;
+        Id = _Id;
         Nombre = _Nombre;
         Direccion = _Direccion;
         Telefono = _Telefono;
