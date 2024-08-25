@@ -9,12 +9,9 @@
 - **Alguno de los metodos que podria agregar en Cadeteria:**  
     - `AltaCadete()`: Para ingresar un nuevo cadete en la cadeteria, podria incluir una creacion de un objeto Cadete de la lista de cadetes.  
     - `BajaCadete()`: Para eliminar un cadete de la lista.  
-    - `ReasignarCadete()`: Para reasignar un pedido de un cadete a otro.  
     - `ModificarCadete()`: Para modificar la informacion de un cadete, en el caso de que este lo necesite.  
 - **Alguno de los metodos que podria agregar en Cadete:**  
-    - `AltaPedido()`: Para ingresar un nuevo pedido en la lista de pedidos del cadete.  
     - `ListarPedidos()`: Para mostrar los pedidos del cadete.  
-    - `CambiarEstadoPedido()`: Para cambiar el estado del pedido, de "Pendiente", "En camino" o "Entregado".  
     - `EliminarPedido()`: Para eliminar un pedido de la lista de pedidos que tenga el cadete.  
 
 ## 3. Teniendo en cuenta los principios de abstracción y ocultamiento, ¿qué atributos, propiedades y métodos deberían ser públicos y cuáles privados?
