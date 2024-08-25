@@ -12,7 +12,7 @@
     - `ModificarCadete()`: Para modificar la informacion de un cadete, en el caso de que este lo necesite.  
 - **Alguno de los metodos que podria agregar en Cadete:**  
     - `ListarPedidos()`: Para mostrar los pedidos del cadete.  
-    - `EliminarPedido()`: Para eliminar un pedido de la lista de pedidos que tenga el cadete.  
+    - `EliminarHistorialPedidos()`: Para eliminar todos los pedidos al final de la jornada.  
 
 ## 3. Teniendo en cuenta los principios de abstracción y ocultamiento, ¿qué atributos, propiedades y métodos deberían ser públicos y cuáles privados?
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por lo general los atributos son privados, para que solo sean accesibles desde dentro de la clase o sus derivadas. Podriamos utilizar los getters y setters para mostrar o modificar algun valor de un atributo.  
