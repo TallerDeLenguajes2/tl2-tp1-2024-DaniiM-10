@@ -7,8 +7,8 @@
 
 ## 2. ¿Qué métodos considera que debería tener la clase Cadetería y la clase Cadete?
 - **Alguno de los metodos que podria agregar en Cadeteria:**  
-    - `AltaCadete()`: Para ingresar un nuevo cadete en la cadeteria, podria incluir una creacion de un objeto Cadete de la lista de cadetes.  
-    - `BajaCadete()`: Para eliminar un cadete de la lista.  
+    - `AltaCadete()`: Para ingresar un nuevo cadete.  
+    - `BajaCadete()`: Para eliminar un cadete.  
     - `ModificarCadete()`: Para modificar la informacion de un cadete, en el caso de que este lo necesite.  
 - **Alguno de los metodos que podria agregar en Cadete:**  
     - `ListarPedidos()`: Para mostrar los pedidos del cadete.  
