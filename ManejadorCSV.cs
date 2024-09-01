@@ -6,13 +6,14 @@ public class ManejadorCSV
         var lineas = File.ReadAllLines(rutaArchivoCadete);
 
         // Convierto cada línea del CSV en un objeto Cadete usando LINQ
-        List<Cadete> cadetes = lineas.Select(linea =>
-        {
-            var datos = linea.Split(',');
-            long id = long.Parse(datos[0]);
+        List<Cadete> cadetes = new List<Cadete>();
 
-            return new Cadete(id, datos[1], datos[2], datos[3]);
-        }).ToList();
+        // recorro cada linea de lineas
+        foreach (var linea in lineas)
+        {
+            string[] datos = linea.Split(',');
+            cadetes.Add(new Cadete(datos[1], datos[2], datos[3], long.Parse(datos[0])));
+        }
 
         return cadetes;
     }
@@ -21,9 +22,10 @@ public class ManejadorCSV
         var linea = File.ReadAllText(rutaArchivoCadeteria);
         var datos = linea.Split(',');
 
-        string rutaArchivoCadete = "";
+        string rutaArchivoCadete = "csv/Cadetes.csv";
+        List<Cadete> cadetes = LeerCadetesCSV(rutaArchivoCadete);
 
-        Cadeteria cadeteria = new Cadeteria(datos[0], datos[1], LeerCadetesCSV(rutaArchivoCadete));
+        Cadeteria cadeteria = new Cadeteria(datos[0], datos[1], cadetes);
 
         return cadeteria;
     }

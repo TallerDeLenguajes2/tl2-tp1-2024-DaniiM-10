@@ -9,14 +9,19 @@ public enum Estados {
 }
 public class Pedido
 {
-    public int Nro { get; set; }
+    public long Nro { get; set; }
+    public string PedidoC { get; set; }
+    public float Precio { get; set; }
     public string Obs { get; set; }
     private Cliente cliente;
     public Estados EstadoDelPedido { get; set; }
 
-    public Pedido(int _Nro, string _Obs, string _Nombre, string _Direccion, string _Telefono, string _DatosReferenciaDireccion)
+    public Pedido(long _Nro, string _PedidoC, float _Precio, string _Obs, 
+    string _Nombre, string _Direccion, string _Telefono, string _DatosReferenciaDireccion)
     {
         Nro = _Nro;
+        PedidoC = _PedidoC;
+        Precio = _Precio;
         Obs = _Obs;
         cliente = new Cliente(_Nombre, _Direccion, _Telefono, _DatosReferenciaDireccion);
         EstadoDelPedido = Estados.Pendiente;
@@ -45,9 +50,16 @@ public class Pedido
     {
         Console.WriteLine("\t********** Datos del Pedido **********");
         Console.WriteLine($"\t\tNro de pedido: {Nro}");
+        Console.WriteLine($"\t\tPedido C: {PedidoC}");
+        Console.WriteLine($"\t\tPedido C: {Precio}");
         Console.WriteLine($"\t\tObservaciones: {Obs}");
         MostrarEstado();
         cliente.MostrarDatosCliente();
         Console.WriteLine("\t**************************************");
+    }
+    public void EliminarCliente() // Eliminar cliente
+    {
+        cliente = null;
+
     }
 }

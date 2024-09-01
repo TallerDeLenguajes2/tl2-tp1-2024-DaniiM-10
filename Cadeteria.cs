@@ -20,7 +20,7 @@ public class Cadeteria
         if(verif)
         {
             Console.WriteLine($"Se agrego el nuevo cadete '{cadete[0]}': '{cadete[1]}'.");
-            Cadetes.Add(new Cadete(long.Parse(cadete[0]), cadete[1], cadete[2], cadete[3]));
+            Cadetes.Add(new Cadete(_Nombre:cadete[0], _Direccion:cadete[1], _Telefono:cadete[2]));
         } else {
             Console.WriteLine("No se pudo agregar un nuevo cadete.");
         }
@@ -47,7 +47,7 @@ public class Cadeteria
         {
             Console.WriteLine($"Se actualizó el cadete '{id}'.");
             Cadetes.Remove(Cadetes.Find(cadete => cadete.Id == id));
-            Cadetes.Add(new Cadete(id, datos[0], datos[1], datos[2]));
+            Cadetes.Add(new Cadete(_Nombre:datos[0], _Direccion:datos[1], _Telefono:datos[2]));
         } else {
             Console.WriteLine("No se pudo modificar el cadete.");
         }

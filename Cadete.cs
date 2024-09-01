@@ -10,22 +10,13 @@ public class Cadete
     public string Telefono { get; set; }
     public List<Pedido> Pedidos { get; set; }
 
-    public Cadete(long _Id, string _Nombre, string _Direccion, string _Telefono)
+    public Cadete(string _Nombre, string _Direccion, string _Telefono, long? _Id = null)
     {
-        //Id = DateTime.Now.Ticks;
-        Id = _Id;
+        Id = _Id ?? DateTime.Now.Ticks; // Usa el ID proporcionado o genera uno nuevo
         Nombre = _Nombre;
-        Direccion = _Direccion;
+        Direccion = _Direccion ?? throw new ArgumentNullException(nameof(_Direccion));
         Telefono = _Telefono;
         Pedidos = new List<Pedido>();
-    }
-    public int PedidosEntregados()
-    {
-        return Pedidos.Count(pedido => pedido.EstadoDelPedido == Estados.Entregado); // Expresion LINQ
-    }
-    public int JornalACobrar()
-    {
-        return 500 * PedidosEntregados();
     }
     public void ListarPedidos()
     {
@@ -37,6 +28,10 @@ public class Cadete
     {
         if (Pedidos != null)
         {
+            foreach (var pedido in Pedidos)
+            {
+                pedido.EliminarCliente();
+            }
             Pedidos.Clear();
             Console.WriteLine("El historial de pedidos fue vaciado.");
         } else {
