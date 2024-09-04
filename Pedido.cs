@@ -7,6 +7,7 @@ public enum Estados {
     Entregado,
     Cancelado
 }
+
 public class Pedido
 {
     public long Nro { get; set; }
@@ -15,6 +16,7 @@ public class Pedido
     public string Obs { get; set; }
     private Cliente cliente;
     public Estados EstadoDelPedido { get; set; }
+    public Cadete cadete { get; set; }
 
     public Pedido(long _Nro, string _PedidoC, float _Precio, string _Obs, 
     string _Nombre, string _Direccion, string _Telefono, string _DatosReferenciaDireccion)
@@ -23,8 +25,9 @@ public class Pedido
         PedidoC = _PedidoC;
         Precio = _Precio;
         Obs = _Obs;
-        cliente = new Cliente(_Nombre, _Direccion, _Telefono, _DatosReferenciaDireccion);
         EstadoDelPedido = Estados.Pendiente;
+        cliente = new Cliente(_Nombre, _Direccion, _Telefono, _DatosReferenciaDireccion);
+        cadete = new Cadete();
     }
     private void MostrarEstado()
     {
@@ -57,9 +60,8 @@ public class Pedido
         cliente.MostrarDatosCliente();
         Console.WriteLine("\t**************************************");
     }
-    public void EliminarCliente() // Eliminar cliente
+    public void EliminarCliente()
     {
         cliente = null;
-
     }
 }
