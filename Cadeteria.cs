@@ -15,7 +15,7 @@ public class Cadeteria
         Pedidos = new Pedido();
     }
     public void AltaCadete(string rutaArchivoCadete, string[] cadete)
-    {        
+    {
         ManejadorCSV manejador = new ManejadorCSV();
         bool verif = manejador.EscribirLineaCSV(rutaArchivoCadete, cadete);
 
@@ -65,12 +65,8 @@ public class Cadeteria
         var cadete = Cadetes.Where(c => c.Id == id);
         var pedido = Pedidos.Where(p => p.Nro == nro);
 
-        if(cadete != null && pedido != null)
-        {
-                pedido[0].CadeteAsignado = cadete;
-        }else
-        {
-                Console.WriteLine("No se encontró el cadete y/o pedido, intente de nuevo.");
-        }
+        (cadete != null && pedido != null) 
+            ? pedido[0].CadeteAsignado = cadete 
+            : Console.WriteLine("No se encontró el cadete y/o pedido, intente de nuevo.");
     }
 }
