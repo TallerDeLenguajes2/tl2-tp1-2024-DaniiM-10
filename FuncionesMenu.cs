@@ -159,5 +159,6 @@ public class FuncionesMenu
         }
         Console.WriteLine($"\t**************************************");
         Console.WriteLine($"\t- Monto ganado total: ${montoGanadoTotal}");
+        Console.ReadKey();
     }
 }
