@@ -7,6 +7,7 @@ public class FuncionesMenu
 {
     public Pedido AltaPedido()
     {
+        Console.Clear();
         Console.WriteLine("********** Crear Pedido **********");
 
         Console.WriteLine("\t- Agregue los datos del cliente:");
@@ -27,13 +28,16 @@ public class FuncionesMenu
         Console.WriteLine($"\t- Pedido creado con exito. Nro de pedido: {nroPedido}");
         Console.WriteLine("=============================================================");
 
+        Console.ReadKey();
+
         return pedidoCreado;
     }
     public void AsignarPedidoCadete(Pedido pedido, Cadeteria cadeteria) 
     {
-        Console.WriteLine("********** Asignar Pedido **********");
         do
         {
+            Console.Clear();
+            Console.WriteLine("********** Asignar Pedido **********");
             Console.Write("\t- Ingrese el id del cadete:");long id = long.Parse(Console.ReadLine());
             
             var cadete = cadeteria.Cadetes.Find(cadete => cadete.Id == id);
@@ -43,6 +47,7 @@ public class FuncionesMenu
                 Console.WriteLine("=============================================================");
                 Console.WriteLine($"\t- Se asignó el pedido {pedido.Nro} al cadete {cadete.Id}");
                 Console.WriteLine("=============================================================");
+                Console.ReadKey();
                 return;
             } else {
                 Console.WriteLine("=============================================================");
@@ -74,7 +79,7 @@ public class FuncionesMenu
 
             if (pedido != null)
             {
-                opcion = char.ToUpper(opcion[0])+opcion.Substring(1);
+                opcion = char.ToUpper(opcion[0]) + opcion.Substring(1);
                 
                 switch (opcion)
                 {
@@ -101,6 +106,7 @@ public class FuncionesMenu
                 Console.WriteLine("No se encontró el pedido. Intente de nuevo.");
                 Console.WriteLine("=============================================================");
             }
+            Console.ReadKey();
         } while (!pedidoEncontrado);
     }
     public void ReasignarPedidoCadete(Cadeteria cadeteria)
@@ -119,6 +125,7 @@ public class FuncionesMenu
                         Pedido pedidoEncontrado = pedido;
                         cadete.Pedidos.Remove(pedidoEncontrado);
                         AsignarPedidoCadete(pedidoEncontrado, cadeteria);
+                        Console.ReadKey();
                         return;
                     }
                 }

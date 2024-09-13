@@ -8,7 +8,6 @@ public class Program
         
         ManejadorCSV manejadorCSV = new ManejadorCSV();
 
-        string csvCadeteria = "csv/Cadeteria.csv";
         Cadeteria cadeteria = manejadorCSV.LeerCadeteriaCSV(csvCadeteria);
 
         InterfazMenu menu = new InterfazMenu();

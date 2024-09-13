@@ -5,14 +5,16 @@ namespace Menu;
 public class InterfazMenu
 {
     private Pedido pedido { get; set; }
+
     public void Interfaz(Cadeteria cadeteria) 
     {
-        if (pedido != null)
-        {
-            Console.WriteLine("Tiene un pedido en linea.");
-        }
+        Console.Clear();
         do
         {
+            if (pedido != null)
+            {
+                Console.WriteLine("Tiene un pedido en linea.");
+            }
             Console.WriteLine("Bienvenido al menú:");
             Console.WriteLine("1. Dar de alta pedidos.");
             Console.WriteLine("2. Asignarlo a cadetes.");
@@ -25,6 +27,8 @@ public class InterfazMenu
             int opcion = int.Parse(Console.ReadLine());
 
             FuncionesMenu funcionesMenu = new FuncionesMenu();
+
+            Console.Clear();
 
             switch (opcion)
             {
