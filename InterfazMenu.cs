@@ -8,9 +8,9 @@ public class InterfazMenu
 
     public void Interfaz(Cadeteria cadeteria) 
     {
-        Console.Clear();
         do
         {
+            Console.Clear();
             if (pedido != null)
             {
                 Console.WriteLine("Tiene un pedido en linea.");
@@ -51,7 +51,6 @@ public class InterfazMenu
                     return;
                 default:
                     Console.WriteLine("Opción no válida. Inténtalo de nuevo.");
-                    Interfaz(cadeteria);
                     break;
             }
         } while (true);
