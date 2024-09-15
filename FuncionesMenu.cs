@@ -34,48 +34,36 @@ public class FuncionesMenu
     }
     public void AsignarPedidoCadete(Pedido pedido, Cadeteria cadeteria) 
     {
+        bool salida = false;
         do
         {
             Console.Clear();
             Console.WriteLine("********** Asignar Pedido **********");
             Console.Write("\t- Ingrese el id del cadete:");long id = long.Parse(Console.ReadLine());
+
+            salida = cadeteria.AsignarCadeteAPedido(id, pedido);
             
-            var cadete = cadeteria.Cadetes.Find(cadete => cadete.Id == id);
-            if (cadete != null)
-            {
-                cadete.Pedidos.Add(pedido);
-                Console.WriteLine("=============================================================");
-                Console.WriteLine($"\t- Se asignó el pedido {pedido.Nro} al cadete {cadete.Id}");
-                Console.WriteLine("=============================================================");
-                Console.ReadKey();
-                return;
-            } else {
-                Console.WriteLine("=============================================================");
-                Console.WriteLine($"No se encontró el cadete. Intente ingresar de nuevo o cambielo.");
-                Console.WriteLine("=============================================================");
-            }
-        } while (true);
+            Console.ReadKey();
+        } while (salida);
     }
     public void CambiarEstadoPedido(Cadeteria cadeteria) // Cambiar el estado de los pedidos
     {
         Console.WriteLine("********** Cambiar Estado Pedido **********");
 
         Console.WriteLine("\t- Todos los pedidos:");
-        foreach (var cadete in cadeteria.Cadetes)
+        foreach (var pedido in cadeteria.Pedidos)
         {
-            Console.WriteLine($"\t\t- Pedidos del cadete {cadete.Nombre}:");
-            cadete.ListarPedidos();
+            Console.WriteLine($"\t\t- Pedido del cadete {pedido.Nro}:");
+            pedido.MostrarPedido();
         }
         Console.WriteLine("******************************************");
         bool pedidoEncontrado = false;
         do
         {
-            Console.WriteLine("\t- Ingrese el Nro de pedido:");long nro = long.Parse(Console.ReadLine());
-            Console.WriteLine("\t- Ingrese el estado del pedido (Entregado, EnCamino, Cancelado)"); string opcion = Console.ReadLine();
+            Console.WriteLine("\t- Ingrese el Nro de pedido: ");long nro = long.Parse(Console.ReadLine());
+            Console.WriteLine("\t- Ingrese el estado del pedido (Entregado, EnCamino, Cancelado): "); string opcion = Console.ReadLine();
             
-            var pedidos = cadeteria.Cadetes.SelectMany(cadete => cadete.Pedidos).ToList(); // Combina todos los pedidos en una sola lista
-            
-            var pedido = pedidos.Find(pedido => pedido.Nro == nro);
+            var pedido = cadeteria.Pedidos.Find(pedido => pedido.Nro == nro);
 
             if (pedido != null)
             {
@@ -116,18 +104,13 @@ public class FuncionesMenu
             Console.WriteLine("********** Reasignar el pedido **********");
             Console.Write("\t- Ingrese el nro de pedido:");long nroPedido = long.Parse(Console.ReadLine());
 
-            foreach (var cadete in cadeteria.Cadetes)
+            foreach (var pedido in cadeteria.Pedidos)
             {
-                foreach (var pedido in cadete.Pedidos)
+                if (pedido.Nro == nroPedido)
                 {
-                    if (pedido.Nro == nroPedido)
-                    {
-                        Pedido pedidoEncontrado = pedido;
-                        cadete.Pedidos.Remove(pedidoEncontrado);
-                        AsignarPedidoCadete(pedidoEncontrado, cadeteria);
-                        Console.ReadKey();
-                        return;
-                    }
+                    AsignarPedidoCadete(pedido, cadeteria);
+                    Console.ReadKey();
+                    return;
                 }
             }
             Console.WriteLine("=============================================================");
@@ -139,24 +122,25 @@ public class FuncionesMenu
     {
         double montoGanadoTotal = 0;
         Console.WriteLine("********** Informe **********");
-        foreach (var cadete in cadeteria.Cadetes)
+        int cantEnvios = 0;
+        double montoGanadoCadaCadete = 0;
+        foreach (var pedido in cadeteria.Pedidos)
         {
-            Console.WriteLine($"\t********** Cadete {cadete.Nombre} **********");
-            int cantEnvios = 0;
-            double montoGanadoCadaCadete = 0;
-            foreach (var pedido in cadete.Pedidos)
+            if (pedido.EstadoDelPedido == Estados.Entregado)
             {
-                if (pedido.EstadoDelPedido == Estados.Entregado)
-                {
-                    cantEnvios++;
-                    montoGanadoCadaCadete += pedido.Precio;
-                }
+                Console.WriteLine($"\t----------------------------------");
+                Console.WriteLine($"\t- Cadete: {pedido.cadete.Nombre}");
+                Console.WriteLine($"\t- Pedido: {pedido.PedidoC}");
+                Console.WriteLine($"\t- Precio: {pedido.Precio}");
+                Console.WriteLine($"\t----------------------------------");
+                cantEnvios++;
+                montoGanadoCadaCadete += pedido.Precio;
             }
-            //mostrar las variables
-            Console.WriteLine($"\t\t- Nro de pedidos entregados: {cantEnvios}");
-            Console.WriteLine($"\t\t- Monto ganado: ${montoGanadoCadaCadete}");
-            montoGanadoTotal += montoGanadoCadaCadete;
         }
+
+        Console.WriteLine($"\t- Nro de pedidos entregados: {cantEnvios}");
+        Console.WriteLine($"\t- Monto ganado: ${montoGanadoCadaCadete}");
+        montoGanadoTotal += montoGanadoCadaCadete;
         Console.WriteLine($"\t**************************************");
         Console.WriteLine($"\t- Monto ganado total: ${montoGanadoTotal}");
         Console.ReadKey();

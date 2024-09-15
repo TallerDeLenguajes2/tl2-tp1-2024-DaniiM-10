@@ -34,6 +34,7 @@ public class InterfazMenu
             {
                 case 1:
                     pedido = funcionesMenu.AltaPedido();
+                    cadeteria.Pedidos.Add(pedido);
                     break;
                 case 2:
                     funcionesMenu.AsignarPedidoCadete(pedido, cadeteria);
