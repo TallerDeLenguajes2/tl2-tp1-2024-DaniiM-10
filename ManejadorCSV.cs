@@ -1,9 +1,9 @@
 namespace Modelos;
-public class ManejadorCSV
+public class ManejadorCSV : AccesoADatos
 {
-    public List<Cadete> LeerCadetesCSV(string rutaArchivoCadete)
+    public List<Cadete> LeerCadetesCSV()
     {
-        var lineas = File.ReadAllLines(rutaArchivoCadete);
+        var lineas = File.ReadAllLines(rutaArchivoCadeteCSV);
 
         // Convierto cada línea del CSV en un objeto Cadete usando LINQ
         List<Cadete> cadetes = new List<Cadete>();
@@ -17,75 +17,15 @@ public class ManejadorCSV
 
         return cadetes;
     }
-    public Cadeteria LeerCadeteriaCSV(string rutaArchivoCadeteria)
+    public Cadeteria LeerCadeteriaCSV()
     {
-        var linea = File.ReadAllText(rutaArchivoCadeteria);
+        var linea = File.ReadAllText(rutaArchivoCadeteriaCSV);
         var datos = linea.Split(',');
 
-        string rutaArchivoCadete = "csv/Cadetes.csv";
-        List<Cadete> cadetes = LeerCadetesCSV(rutaArchivoCadete);
+        List<Cadete> cadetes = LeerCadetesCSV();
 
         Cadeteria cadeteria = new Cadeteria(datos[0], datos[1], cadetes);
 
         return cadeteria;
-    }
-    public bool EscribirLineaCSV(string rutaArchivo, string[] fila)
-    {
-        bool salida = false;
-        using (StreamWriter escritor = new StreamWriter(rutaArchivo, true)) // "true" para agregar línea en lugar de sobrescribir
-        {
-            escritor.WriteLine(String.Join(',', fila));
-            salida = true;
-        }
-        return salida;
-    }
-    public bool BorrarLineaCSV(string rutaArchivo, long id)
-    {
-        var lineas = File.ReadAllLines(rutaArchivo).ToList();
-        var lineasActualizadas = new List<string>();
-
-        bool salida = false;
-
-        foreach (var linea in lineas)
-        {
-            var datos = linea.Split(',');
-
-            if (datos.Length > 0 && long.TryParse(datos[0], out long idLinea))
-            {
-                if (idLinea != id)
-                {
-                    lineasActualizadas.Add(linea);
-                } else {
-                    salida = false;
-                }
-            }
-        }
-        File.WriteAllLines(rutaArchivo, lineasActualizadas);
-
-        return salida;
-    }
-    public bool ModificarLineaCSV(string rutaArchivo, long id, string[] nuevaFila)
-    {
-        var lineas = File.ReadAllLines(rutaArchivo).ToList();
-        bool lineaModificada = false;
-
-        for (int i = 0; i < lineas.Count; i++)
-        {
-            var datos = lineas[i].Split(',');
-
-            if (datos.Length > 0 && long.TryParse(datos[0], out long idLinea) && idLinea == id)
-            {
-                lineas[i] = string.Join(",", nuevaFila);
-                lineaModificada = true;
-                break;
-            }
-        }
-
-        if (lineaModificada)
-        {
-            File.WriteAllLines(rutaArchivo, lineas);
-        }
-
-        return lineaModificada;
     }
 }

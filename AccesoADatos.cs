@@ -1,3 +1,4 @@
+namespace Modelos;
 public class AccesoADatos
 {
     protected string rutaArchivoCadeteriaCSV = "archivos/cadeteria.csv";
