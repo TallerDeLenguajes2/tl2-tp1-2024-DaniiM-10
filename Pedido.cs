@@ -17,6 +17,7 @@ public class Pedido
     private Cliente cliente;
     public Estados EstadoDelPedido { get; set; }
     public Cadete cadete { get; set; }
+    
     public Pedido(){}
     public Pedido(long _Nro, string _PedidoC, float _Precio, string _Obs, 
     string _Nombre, string _Direccion, string _Telefono, string _DatosReferenciaDireccion)
