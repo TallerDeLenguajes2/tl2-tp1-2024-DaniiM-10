@@ -7,10 +7,10 @@ public class Program
     {
         
         ManejadorCSV manejadorCSV = new ManejadorCSV();
-
-        Cadeteria cadeteria = manejadorCSV.LeerCadeteriaCSV(csvCadeteria);
+        Cadeteria cadeteria = manejadorCSV.LeerCadeteriaCSV();
 
         InterfazMenu menu = new InterfazMenu();
         menu.Interfaz(cadeteria);
     }
 }
+//638619591159389891

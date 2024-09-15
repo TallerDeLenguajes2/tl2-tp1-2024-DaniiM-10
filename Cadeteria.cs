@@ -7,17 +7,19 @@ public class Cadeteria
     public List<Cadete> Cadetes { get; set; }
     public List<Pedido> Pedidos { get; set; }
 
+    public Cadeteria(){}
+
     public Cadeteria(string _Nombre, string _Telefono, List<Cadete> _Cadetes)
     {
         Nombre = _Nombre;
         Telefono = _Telefono;
         Cadetes = _Cadetes;
-        Pedidos = new Pedido();
+        Pedidos = new List<Pedido>();
     }
-    public void AltaCadete(string rutaArchivoCadete, string[] cadete)
+    /*public void AltaCadete(string[] cadete)
     {
         ManejadorCSV manejador = new ManejadorCSV();
-        bool verif = manejador.EscribirLineaCSV(rutaArchivoCadete, cadete);
+        bool verif = manejador.EscribirLineaCSV(cadete);
 
         if(verif)
         {
@@ -26,11 +28,11 @@ public class Cadeteria
         } else {
             Console.WriteLine("No se pudo agregar un nuevo cadete.");
         }
-    }
-    public void BajaCadete(string rutaArchivoCadete, long id) 
+    }*/
+    /*public void BajaCadete(long id) 
     {
         ManejadorCSV manejador = new ManejadorCSV();
-        bool verif = manejador.BorrarLineaCSV(rutaArchivoCadete, id);
+        bool verif = manejador.BorrarLineaCSV(id);
 
         if(verif)
         {
@@ -39,11 +41,11 @@ public class Cadeteria
         } else {
             Console.WriteLine("No se pudo borrar el cadete.");
         }
-    }
-    public void ModificarCadete(string rutaArchivoCadete, long id, string[] datos)
+    }*/
+    /*public void ModificarCadete(long id, string[] datos)
     {
         ManejadorCSV manejador = new ManejadorCSV();
-        bool verif = manejador.ModificarLineaCSV(rutaArchivoCadete, id, datos);
+        bool verif = manejador.ModificarLineaCSV(id, datos);
 
         if(verif)
         {
@@ -53,20 +55,31 @@ public class Cadeteria
         } else {
             Console.WriteLine("No se pudo modificar el cadete.");
         }
-    }
+    }*/
 
     public int JornalACobrar(long id)
     {
-        int cantPedidosEntregados = Pedidos.Count(p => p.cadete.id == id && p.cadete.EstadoDelPedido == Estados.Entregado);
+        int cantPedidosEntregados = Pedidos.Count(p => p.cadete.Id == id && p.EstadoDelPedido == Estados.Entregado);
         return 500 * cantPedidosEntregados;
     }
-    public void AsignarCadeteAPedido (long id, long nro)
+    public bool AsignarCadeteAPedido (long id, Pedido pedido)
     {
-        var cadete = Cadetes.Where(c => c.Id == id);
-        var pedido = Pedidos.Where(p => p.Nro == nro);
+        Cadete cadete = Cadetes.Find(c => c.Id == id);
 
-        (cadete != null && pedido != null) 
-            ? pedido[0].CadeteAsignado = cadete 
-            : Console.WriteLine("No se encontró el cadete y/o pedido, intente de nuevo.");
+        if (cadete != null && pedido != null)
+        {
+            pedido.cadete = null;
+            pedido.cadete = cadete;
+            Console.WriteLine("=============================================================");
+            Console.WriteLine($"\t- Se asignó el pedido {pedido.Nro} al cadete {cadete.Id}");
+            Console.WriteLine("=============================================================");
+            Console.ReadKey();
+            return false;
+        } else {
+            Console.WriteLine("=============================================================");
+            Console.WriteLine($"No se encontró el cadete. Intente ingresar de nuevo o cambielo.");
+            Console.WriteLine("=============================================================");
+            return true;
+        }
     }
 }
