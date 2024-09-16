@@ -1,0 +1,21 @@
+[
+    {
+      "Id": 783951,
+      "Nombre": "Daniel",
+      "Direccion": "ciudad JSON 1",
+      "Telefono": "281576586"
+    },
+    {
+      "Id": 329482,
+      "Nombre": "Lucas",
+      "Direccion": "ciudad JSON 2",
+      "Telefono": "781539451"
+    },
+    {
+      "Id": 498273,
+      "Nombre": "Monteros",
+      "Direccion": "ciudad JSON 3",
+      "Telefono": "181339769"
+    }
+]
+  
