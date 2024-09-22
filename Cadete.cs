@@ -1,5 +1,3 @@
-using System;
-using Modelos;
 namespace Modelos;
 
 public class Cadete
